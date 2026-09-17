@@ -1,0 +1,15 @@
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*-config
+terraform/crash.log
+terraform/override.tf
+terraform/override.tf.json
+
+# Go
+app/toy-app-build
+
+# OS
+.DS_Store
+Thumbs.db
