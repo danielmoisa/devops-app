@@ -30,7 +30,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{
-		"message": "hello from the toy devops app",
+		"message": "hello from the new devops app",
 		"version": version,
 		"host":    hostname,
 	})
