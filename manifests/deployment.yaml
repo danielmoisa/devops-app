@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: devops-app
-          # image tag is bumped manually after each CI push per our workflow
+          # bumped manually to match the GitHub Release tag that CI just built and pushed
           image: ghcr.io/danielmoisa/devops-app:dev
           ports:
             - containerPort: 8080
