@@ -1,0 +1,19 @@
+namespace: devops-app
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/danielmoisa/devops-app
+  tag: v0.0.1
+
+service:
+  port: 80
+  targetPort: 8080
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 32Mi
+  limits:
+    cpu: 200m
+    memory: 64Mi

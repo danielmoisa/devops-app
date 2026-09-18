@@ -9,7 +9,7 @@ spec:
     # https, not the git@ remote — argocd has no ssh key configured for this repo
     repoURL: https://github.com/danielmoisa/devops-app.git
     targetRevision: main
-    path: manifests
+    path: chart/devops-app
   destination:
     server: https://kubernetes.default.svc
     namespace: devops-app

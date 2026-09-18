@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: devops-app
-  namespace: devops-app
+  namespace: {{ .Values.namespace }}
   labels:
     app: devops-app
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: devops-app
@@ -17,31 +17,25 @@ spec:
     spec:
       containers:
         - name: devops-app
-          # bumped manually to match the GitHub Release tag that CI just built and pushed
-          image: ghcr.io/danielmoisa/devops-app:v0.0.1
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.service.targetPort }}
           env:
             - name: PORT
-              value: "8080"
+              value: "{{ .Values.service.targetPort }}"
             - name: APP_VERSION
-              value: "dev"
+              value: {{ .Values.image.tag | quote }}
           readinessProbe:
             httpGet:
               path: /healthz
-              port: 8080
+              port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 2
             periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8080
+              port: {{ .Values.service.targetPort }}
             initialDelaySeconds: 5
             periodSeconds: 10
           resources:
-            requests:
-              cpu: 50m
-              memory: 32Mi
-            limits:
-              cpu: 200m
-              memory: 64Mi
+            {{- toYaml .Values.resources | nindent 12 }}
