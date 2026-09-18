@@ -18,7 +18,7 @@ spec:
       containers:
         - name: devops-app
           # bumped manually to match the GitHub Release tag that CI just built and pushed
-          image: ghcr.io/danielmoisa/devops-app:dev
+          image: ghcr.io/danielmoisa/devops-app:v0.0.1
           ports:
             - containerPort: 8080
           env:
